@@ -10,10 +10,10 @@ export abstract class ResourceEntity {
   @DeleteDateColumn({ name: 'deleted_at', type: 'time with time zone' })
   deletedAt: Date;
 
-  toModel<T extends ResourceEntity>(...args: any[]): T {
+  toModel<T extends this>(...args: any[]): T {
     return {
       ...structuredClone(this),
       deletedAt: undefined,
-    } as ResourceEntity as T;
+    } as T;
   }
 }
