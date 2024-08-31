@@ -1,4 +1,4 @@
-FROM node:20-bullseye-slim
+FROM node:22-alpine
 
 COPY . /usr/src
 

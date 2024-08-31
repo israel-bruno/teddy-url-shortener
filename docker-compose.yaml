@@ -18,9 +18,12 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - .:/usr/app
+      - .:/usr/src
+      - /usr/src/node_modules # Evita problemas de sobrescrita do node_modules
+
     depends_on:
       - postgres
+    command: yarn nodemon -L --ext ts,json --watch apps --watch libs --exec "yarn start urls"
 
 volumes:
   pgdata:
