@@ -4,8 +4,8 @@ COPY . /usr/src
 
 WORKDIR /usr/src
 
-RUN yarn
-RUN yarn build urls
+RUN npm install
+RUN npm run build urls
 
 EXPOSE 3000
 

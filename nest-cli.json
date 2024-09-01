@@ -1,12 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/teddy-url-shortener/src",
   "monorepo": true,
-  "root": "apps/teddy-url-shortener",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/teddy-url-shortener/tsconfig.app.json"
+    "tsConfigPath": "tsconfig.json"
   },
   "projects": {
     "urls": {
