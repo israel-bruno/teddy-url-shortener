@@ -6,7 +6,7 @@ import { ValidationPipe } from '../pipes/validation.pipe'
 
 export class AppFactory {
   static async create(module: any): Promise<NestFastifyApplication> {
-    const app = await NestFactory.create<NestFastifyApplication>(module, new FastifyAdapter())
+    const app = await NestFactory.create<NestFastifyApplication>(module, new FastifyAdapter({ logger: true }))
 
     const document = SwaggerModule.createDocument(app, DocsConfig, { include: [module] })
     SwaggerModule.setup('/api/docs', app, document)

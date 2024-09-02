@@ -5,8 +5,8 @@ COPY . /usr/src
 WORKDIR /usr/src
 
 RUN npm install
-RUN npm run build urls
+RUN npm run build users
 
 EXPOSE 3000
 
-CMD node dist/apps/urls/main
+CMD node dist/apps/users/main

@@ -1,5 +1,5 @@
 export class PayloadDTO {
-  constructor(private id: number) {}
+  constructor(public id: number) {}
 
   toPlainObject() {
     return Object.assign({}, this)

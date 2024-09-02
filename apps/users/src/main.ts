@@ -3,6 +3,6 @@ import { UsersModule } from './users.module'
 
 async function bootstrap() {
   const app = await AppFactory.create(UsersModule)
-  await app.listen(3000)
+  await app.listen(3000, '0.0.0.0')
 }
 bootstrap()

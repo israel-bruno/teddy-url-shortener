@@ -9,8 +9,8 @@ import { CreateUrlDTO } from './create-url.dto'
 export class CreateUrlUseCase implements IUseCase {
   constructor(private readonly urlsRepository: UrlsRepository) {}
 
-  async execute(dto: CreateUrlDTO): Promise<UrlEntity> {
-    return await this.urlsRepository.save(this.urlsRepository.create({ ...dto, code: await this.generateUniqueRandomCode() }))
+  async execute(dto: CreateUrlDTO, actorId?: number): Promise<UrlEntity> {
+    return await this.urlsRepository.save(this.urlsRepository.create({ ...dto, code: await this.generateUniqueRandomCode(), ownerId: actorId }))
   }
 
   private async generateUniqueRandomCode() {

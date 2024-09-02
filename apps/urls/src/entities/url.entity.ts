@@ -12,10 +12,14 @@ export class UrlEntity extends ResourceEntity {
   @Column({ name: 'original_url', type: 'character varying' })
   originalUrl: string
 
+  @Column({ name: 'owner_id', type: 'integer', nullable: true })
+  ownerId: number | null
+
   override toModel<T extends this>(): T {
     return {
       ...super.toModel(),
       link: process.env.BASE_URL + '/' + this.code,
+      ownerId: undefined,
     } as T
   }
 }
