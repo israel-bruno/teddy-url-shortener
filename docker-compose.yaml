@@ -26,6 +26,20 @@ services:
       - postgres
     command: yarn nodemon -L --ext ts,json --watch apps --watch libs --exec "yarn start urls"
 
+  users:
+    build:
+      context: ./
+      dockerfile: ./apps/users/Dockerfile
+    ports:
+      - '3001:3000'
+    volumes:
+      - .:/usr/src
+      - /usr/src/node_modules
+
+    depends_on:
+      - postgres
+    command: yarn nodemon -L --ext ts,json --watch apps --watch libs --exec "yarn start users"
+
 volumes:
   pgdata:
     driver: local
