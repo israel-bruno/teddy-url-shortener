@@ -22,4 +22,8 @@ export class UrlEntity extends ResourceEntity {
       ownerId: undefined,
     } as T
   }
+
+  static example() {
+    return { id: 1, originalUrl: 'https://www.google.com', code: 'abCAd8', link: process.env.BASE_URL + '/abCAd8' }
+  }
 }
