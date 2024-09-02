@@ -6,7 +6,7 @@ export abstract class BaseRepository<T extends ObjectLiteral> extends Repository
 
   override async findOneOrFail(options: FindOneOptions<T>): Promise<T> {
     const entity = await super.findOne(options)
-    if (!entity) throw new NotFoundException('Resource not found', 'Could not to find any resource')
+    if (!entity) throw new NotFoundException('Resource not found', `Could not to find ${this.resourceName ?? 'any resource'}`)
     return entity
   }
 }

@@ -8,5 +8,6 @@ import { UrlEntity } from '../entities/url.entity'
 export class UrlsRepository extends BaseRepository<UrlEntity> {
   constructor(@InjectRepository(UrlEntity) readonly typeormRepository: Repository<UrlEntity>) {
     super(typeormRepository.target, typeormRepository.manager, typeormRepository.queryRunner)
+    this.resourceName = 'url'
   }
 }

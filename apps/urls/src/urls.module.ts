@@ -5,8 +5,9 @@ import { UrlEntity } from './entities/url.entity'
 import { UrlsRepository } from './repositories/urls.repository'
 import { UrlsController } from './urls.controller'
 import { CreateUrlUseCase } from './use-cases/create-url/create-url.use-case'
+import { FindUrlUseCase } from './use-cases/find-url/find-url.use-case'
 
-const useCases = [CreateUrlUseCase]
+const useCases = [CreateUrlUseCase, FindUrlUseCase]
 const repositories = [UrlsRepository]
 @Module({
   imports: [BaseModule, TypeOrmModule.forFeature([UrlEntity])],
