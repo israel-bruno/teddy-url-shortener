@@ -4,7 +4,7 @@ import { IsUrl } from 'class-validator'
 export class CreateUrlDTO {
   @ApiProperty({
     description: 'The original url',
-    example: 'https://google.com',
+    example: 'https://www.google.com',
     required: true,
   })
   @IsUrl()
