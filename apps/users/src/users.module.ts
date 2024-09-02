@@ -4,9 +4,10 @@ import { BaseModule } from 'libs/core/modules/base/base.module'
 import { UserEntity } from './entities/user.entity'
 import { UsersRepository } from './repositories/users.repository'
 import { CreateUserUseCase } from './use-cases/create-user/create-user.use-case'
+import { LoginUseCase } from './use-cases/login/login.use-case'
 import { UsersController } from './users.controller'
 
-const useCases = [CreateUserUseCase]
+const useCases = [CreateUserUseCase, LoginUseCase]
 const repositories = [UsersRepository]
 
 @Module({
