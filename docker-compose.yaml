@@ -4,7 +4,7 @@ services:
   teddy-postgres:
     container_name: teddy-postgres
     image: postgres:16.4
-    restart: unless-stopped
+    restart: always
     ports:
       - '${DB_PORT}:5432'
     environment:
@@ -17,7 +17,7 @@ services:
 
   teddy-urls:
     container_name: teddy-urls
-    restart: unless-stopped
+    restart: always
     build:
       context: ./
       dockerfile: ./apps/urls/Dockerfile
@@ -36,7 +36,7 @@ services:
 
   teddy-users:
     container_name: teddy-users
-    restart: unless-stopped
+    restart: always
     build:
       context: ./
       dockerfile: ./apps/users/Dockerfile

@@ -72,5 +72,13 @@ cd teddy-url-shortener
 Executar o Docker Compose
 
 ```bash
-docker-compose up
+docker-compose --env-file=.env.example up
 ```
+
+## Como testar
+
+Como dito anteriormente, cada serviço expõe a própria documentação:
+
+[Documentação de users](http://localhost:3001/api/docs)
+
+[Documentação de urls](http://localhost:3000/api/docs)
