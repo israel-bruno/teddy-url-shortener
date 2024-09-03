@@ -74,7 +74,3 @@ Executar o Docker Compose
 ```bash
 docker-compose up
 ```
-
-## License
-
-Nest is [MIT licensed](LICENSE).
