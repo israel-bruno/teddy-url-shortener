@@ -1,5 +1,6 @@
 import { ResourceEntity } from 'libs/shared/entities/resource.entity'
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { UrlViewEntity } from './url-views.entity'
 
 @Entity('urls')
 export class UrlEntity extends ResourceEntity {
@@ -15,10 +16,14 @@ export class UrlEntity extends ResourceEntity {
   @Column({ name: 'owner_id', type: 'integer', nullable: true })
   ownerId: number | null
 
+  @OneToMany(() => UrlViewEntity, (view) => view.url)
+  views: UrlViewEntity[]
+
   override toModel<T extends this>(): T {
     return {
       ...super.toModel(),
       link: process.env.BASE_URL + '/' + this.code,
+      views: this.views?.length,
       ownerId: undefined,
     } as T
   }

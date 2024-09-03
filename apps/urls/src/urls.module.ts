@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { BaseModule } from 'libs/core/modules/base/base.module'
+import { UrlViewEntity } from './entities/url-views.entity'
 import { UrlEntity } from './entities/url.entity'
 import { UrlsRepository } from './repositories/urls.repository'
 import { UrlsController } from './urls.controller'
@@ -13,7 +14,7 @@ import { UpdateUrlUseCase } from './use-cases/update-url/update-url.use-case'
 const useCases = [CreateUrlUseCase, FindUrlUseCase, ListUrlsUseCase, DeleteUrlUseCase, UpdateUrlUseCase]
 const repositories = [UrlsRepository]
 @Module({
-  imports: [BaseModule, TypeOrmModule.forFeature([UrlEntity])],
+  imports: [BaseModule, TypeOrmModule.forFeature([UrlEntity, UrlViewEntity])],
   controllers: [UrlsController],
   providers: [...repositories, ...useCases],
 })

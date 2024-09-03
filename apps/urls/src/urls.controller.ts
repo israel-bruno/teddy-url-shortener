@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Redirect, Req } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Header, Headers, HttpStatus, Ip, Param, Patch, Post, Redirect, Req } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiPermanentRedirectResponse, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Public } from 'libs/core/decorators/public.decorator'
 import { RequestDTO } from 'libs/core/dtos/request.dto'
@@ -27,8 +27,12 @@ export class UrlsController {
   @Redirect()
   @ApiOperation({ summary: 'Redirect to origin url' })
   @ApiPermanentRedirectResponse({ status: HttpStatus.PERMANENT_REDIRECT })
-  async getRedirect(@Param('code') code: string) {
-    const url = await this.findUrlUseCase.execute(code)
+  @Header('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
+  @Header('Pragma', 'no-cache')
+  @Header('Expires', '0')
+  @Header('Surrogate-Control', 'no-store')
+  async getRedirect(@Param('code') code: string, @Headers('user-agent') agent: string, @Headers('origin') origin: string, @Ip() ip: string) {
+    const url = await this.findUrlUseCase.execute(code, { agent, origin, ip })
 
     return { url: url.originalUrl, statusCode: HttpStatus.PERMANENT_REDIRECT }
   }

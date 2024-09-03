@@ -1,19 +1,20 @@
-import { CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from 'typeorm';
+import { CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from 'typeorm'
+import { BaseEntity } from './base.entity'
 
-export abstract class ResourceEntity {
+export abstract class ResourceEntity extends BaseEntity {
   @CreateDateColumn({ name: 'created_at', type: 'time with time zone' })
-  createdAt: Date;
+  createdAt: Date
 
   @UpdateDateColumn({ name: 'updated_at', type: 'time with time zone' })
-  updatedAt: Date;
+  updatedAt: Date
 
   @DeleteDateColumn({ name: 'deleted_at', type: 'time with time zone' })
-  deletedAt: Date;
+  deletedAt: Date
 
   toModel<T extends this>(...args: any[]): T {
     return {
-      ...structuredClone(this),
+      ...super.toModel(),
       deletedAt: undefined,
-    } as T;
+    } as T
   }
 }
