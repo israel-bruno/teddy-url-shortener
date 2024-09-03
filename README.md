@@ -1,72 +1,79 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## Encurtador de Urls
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+#### Autor
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- [Israel Morais](https://www.linkedin.com/in/israel-morais-a3b20b173/)
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Solução
 
-## Installation
+Para o teste prático para desenvolvedor back-end Teddy Open Finance, foi feito um sistema de encurtamentos de urls. O código fonte foi estruturado em um monorepo e pensado para uma arquitetura de microserviços.
+
+O projeto é constituído de 2 apps (microserviços) que devem ser responsáveis pelos objetos de seus domínios. São eles:
+
+- urls -> microserviço responsável pelo CRUD de urls e registrar as visualizações.
+- users -> microserviço responsável por cadastrar e autenticar usuários
+
+Para ganhar tempo, realizei as seguintes abordagens:
+
+- Os serviços compartilham o mesmo banco e as migrações são centralizadas (sei que em um cenário ideal cada serviço deveria ter o proprio mecanismo de persistência).
+
+- Cada serviço possui a própria documentação (daria para mergear todas usando os endpoints que retornam o schema em json/yaml mas considerei que isso teria menos peso do que a funcionalidade em si).
+
+O esquema DDL ficou assim:
+
+![alt text](docs/assets/DDL.png)
+
+### Principais Ferramentas
+
+- Linguagem:
+
+  - Node.js
+
+- Frameworks/Libs:
+
+  - NestJS
+  - Fastify
+  - Typeorm
+  - Swagger / OpenAPI
+
+- Banco de dados:
+
+  - Postgres
+
+- Conteinerização
+
+  - Docker
+  - Docker Compose
+
+- Padrões
+  - Monorepo
+  - SOLID
+
+## Pré requisitos
+
+Para rodar o projeto deverá possuir o Docker Compose instalado.
+
+## Como rodar
+
+Clonar o repositório
 
 ```bash
-$ npm install
+git clone https://github.com/israel-bruno/teddy-url-shortener.git
 ```
 
-## Running the app
+Acessar a pasta do projeto
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cd teddy-url-shortener
 ```
 
-## Test
+Executar o Docker Compose
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose up
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
